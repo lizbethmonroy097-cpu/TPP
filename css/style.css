@@ -21,63 +21,35 @@ body.dark-mode {
   --link-hover: #ff9d33;
 }
 
-/* ====== APLICACIÓN DE VARIABLES ====== */
+/* ====== RESET Y BASE ====== */
+* {
+  box-sizing: border-box;
+}
+
+html,
 body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
   background-color: var(--bg-color);
   color: var(--text-color);
+  line-height: 1.6;
   transition: background 0.4s, color 0.4s;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* ====== ENCABEZADO / NAV ====== */
 header {
   background: var(--header-bg);
-}
-
-nav a {
-  color: var(--link-color);
-  transition: color 0.3s;
-}
-
-nav a:hover {
-  color: var(--link-hover);
-}
-
-section {
-  background-color: var(--section-bg);
-  transition: background 0.4s, color 0.4s;
-}
-
-footer {
-  background-color: var(--footer-bg);
-  transition: background 0.4s, color 0.4s;
-}
-
-/* ====== BOTONES ====== */
-button {
-  background-color: var(--accent-color);
-  color: white;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #e66900;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
-body {
-  background-color: #f7f7f7;
-  color: #333;
-  line-height: 1.6;
-}
-
-
-header {
-  background: linear-gradient(90deg, #003366, #0077b6);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -90,55 +62,119 @@ header {
   z-index: 1000;
 }
 
-.logo h1 {
-  color: #ff7b00; /* Naranja brillante */
-  margin-bottom: 5px;
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.logo p {
-  font-size: 14px;
+.logo img {
+  height: 90px;
+  width: auto;
+  background: white;
+  border-radius: 12px;
+  padding: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.texto-logo h1 {
+  color: var(--accent-color);
+  margin: 0 0 3px 0;
+  font-size: 28px;
+}
+
+.texto-logo p {
   color: white;
+  margin: 0;
+  font-size: 14px;
+  letter-spacing: 1px;
 }
 
 nav ul {
   list-style: none;
   display: flex;
   gap: 25px;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
 nav a {
   text-decoration: none;
-  color: white;
+  color: var(--link-color);
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color .3s;
 }
 
 nav a:hover {
-  color: #ff7b00;
+  color: var(--link-hover);
 }
 
+/* Botones */
+button {
+  background-color: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background .3s;
+}
 
+button:hover {
+  background-color: #e66900;
+}
+
+.modo-toggle {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15px;
+}
+
+.modo-toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: scale(1.06);
+}
+
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* ====== CAROUSEL / SLIDER ====== */
 .carousel {
-  margin-top: 90px; /* espacio por el header fijo */
+  margin-top: 90px;
   position: relative;
   overflow: hidden;
   height: 80vh;
 }
 
-.carousel img {
-  width: 100%;
-  height: 80vh;
-  object-fit: cover;
-}
-
 .slide {
   display: none;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
 }
 
 .slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
@@ -153,11 +189,30 @@ nav a:hover {
   font-size: 1.2rem;
 }
 
-
-section {
+/* ====== SECCIONES ====== */
+main section {
   padding: 80px 60px;
-  background-color: white;
+  background: var(--section-bg);
   margin-bottom: 20px;
+  display: none;
+  animation: fadeIn .4s ease-in-out;
+}
+
+main section.activo {
+  display: block;
+  margin: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 section h2 {
@@ -178,19 +233,19 @@ section h2 {
 }
 
 .servicio {
-  background: white;
+  background: var(--section-bg);
   border: 1px solid #ddd;
   border-radius: 10px;
   padding: 20px;
   width: 30%;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform .3s;
 }
 
 .servicio:hover {
   transform: translateY(-5px);
-  border-color: #ff7b00;
+  border-color: var(--accent-color);
 }
 
 form {
@@ -201,278 +256,59 @@ form {
   gap: 15px;
 }
 
-input, textarea {
+input,
+textarea {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 1rem;
 }
 
-button {
-  background-color: #ff7b00;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-
-button:hover {
-  background-color: #e66900;
-}
-
-/*CONTACTO */
+/* CONTACTO */
 #contacto {
   background-color: #003366;
   color: white;
   text-align: center;
 }
 
-#contacto p {
-  margin: 8px 0;
-}
-
+/* ====== FOOTER MEJORADO ====== */
 footer {
-  background-color: #001f3f;
+  background-color: var(--footer-bg);
   color: white;
+  padding: 40px 20px;
+}
+
+.footer-grid {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid .col {
+  flex: 1 1 220px;
+}
+
+.footer-grid h4 {
+  margin: 0 0 10px 0;
+  color: var(--accent-color);
+}
+
+.footer-grid p,
+.footer-grid a {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+}
+
+.footer-bottom {
   text-align: center;
-  padding: 15px;
-  font-size: 14px;
-}
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 15px;
+  margin-top: 20px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.75);
 }
 
-.logo img {
-  height: 90px; /* Aumenta el tamaño del logo */
-  width: auto;
-  background-color: white;
-  border-radius: 12px;
-  padding: 6px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 20px; /* separa un poco más el texto del logo */
-}
-
-
-.texto-logo h1 {
-  color: #ff7b00; /* naranja corporativo */
-  margin-bottom: 3px;
-  font-size: 28px;
-}
-
-.texto-logo p {
-  color: white;
-  font-size: 14px;
-  letter-spacing: 1px;
-}
-main section {
-  display: none;
-  animation: fadeIn 0.4s ease-in-out;
-}
-
-main section.activo {
-  display: block;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-/* ====== BOTÓN MODO OSCURO/CLARO ====== */
-.modo-toggle {
-  background: transparent;
-  border: 2px solid white;
-  color: white;
-  border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  font-size: 1.3rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  margin-left: 15px;
-}
-
-.modo-toggle:hover {
-  background: rgba(255, 255, 255, 0.15);
-  transform: scale(1.08);
-}
-
-/* Alinearlo con el header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-}
-
-header nav ul {
-  align-items: center;
-}
-/* ==============================
-   🔹 DISEÑO RESPONSIVE 🔹
-============================== */
-
-/* 📱 Celulares pequeños (hasta 600px) */
-@media (max-width: 600px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 10px 20px;
-  }
-
-  .logo {
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .logo img {
-    height: 60px;
-  }
-
-  nav ul {
-    flex-direction: column;
-    width: 100%;
-    gap: 10px;
-    margin-top: 10px;
-  }
-
-  nav a {
-    font-size: 15px;
-  }
-
-  .carousel {
-    height: 50vh;
-  }
-
-  .carousel img {
-    height: 50vh;
-  }
-
-  section {
-    padding: 50px 20px;
-  }
-
-  section h2 {
-    font-size: 22px;
-  }
-
-  .servicio {
-    width: 100%;
-  }
-
-  form {
-    width: 100%;
-    padding: 0 10px;
-  }
-
-  footer {
-    font-size: 12px;
-    padding: 10px;
-  }
-}
-
-/* 📱📲 Tablets (601px - 1024px) */
-@media (min-width: 601px) and (max-width: 1024px) {
-  header {
-    padding: 10px 40px;
-  }
-
-  .logo img {
-    height: 70px;
-  }
-
-  nav ul {
-    gap: 15px;
-  }
-
-  section {
-    padding: 60px 40px;
-  }
-
-  .servicio {
-    width: 45%;
-  }
-
-  form {
-    width: 90%;
-  }
-}
-
-/* 💻 Escritorio grande (más de 1024px) */
-@media (min-width: 1025px) {
-  .servicios-container {
-    max-width: 1200px;
-    margin: auto;
-  }
-}
-/* ==============================
-   🔹 MENÚ HAMBURGUESA 🔹
-============================== */
-
-/* Ocultar el botón en pantallas grandes */
-.menu-toggle {
-  display: none;
-  background: transparent;
-  border: none;
-  color: white;
-  font-size: 28px;
-  cursor: pointer;
-}
-
-/* 📱 Mostrar botón en móviles */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    z-index: 1100;
-  }
-
-  nav {
-    position: absolute;
-    top: 80px;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(90deg, #003366, #0077b6);
-    transform: translateY(-120%);
-    transition: transform 0.4s ease;
-    text-align: center;
-    z-index: 1000;
-  }
-
-  nav.active {
-    transform: translateY(0);
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 15px;
-    padding: 20px 0;
-  }
-
-  nav a {
-    font-size: 18px;
-    color: white;
-  }
-
-  nav a:hover {
-    color: #ff7b00;
-  }
-}
+/* ====== MISION/VISION */
 .mision-vision-valores {
   margin-top: 30px;
 }
@@ -481,10 +317,9 @@ header nav ul {
   color: #003366;
   margin-top: 25px;
   margin-bottom: 10px;
-  text-align: left;
-  border-left: 4px solid #ff7b00;
+  border-left: 4px solid var(--accent-color);
   padding-left: 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .mision-vision-valores ul {
@@ -497,4 +332,142 @@ header nav ul {
   margin-bottom: 8px;
   padding-left: 10px;
   border-left: 3px solid #0077b6;
+}
+
+/* ====== MODO OSCURO: FORZAR reglas donde hace falta ====== */
+body.dark-mode header {
+  background: var(--header-bg) !important;
+  color: var(--text-color);
+}
+
+body.dark-mode nav a {
+  color: var(--link-color) !important;
+}
+
+body.dark-mode nav a:hover {
+  color: var(--link-hover);
+}
+
+body.dark-mode section {
+  background: var(--section-bg) !important;
+  color: var(--text-color);
+}
+
+body.dark-mode section h2 {
+  color: #bed7ff;
+}
+
+body.dark-mode footer {
+  background: var(--footer-bg) !important;
+  color: var(--text-color);
+}
+
+body.dark-mode .texto-logo h1 {
+  color: var(--accent-color);
+}
+
+body.dark-mode .servicio,
+body.dark-mode form,
+body.dark-mode input,
+body.dark-mode textarea {
+  background: transparent;
+  color: var(--text-color);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ==============================
+   🔹 DISEÑO RESPONSIVE 🔹
+   ============================== */
+@media (max-width: 768px) {
+  header {
+    padding: 10px 20px;
+  }
+
+  .logo img {
+    height: 60px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .menu-toggle {
+    display: block;
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    z-index: 1100;
+  }
+
+  nav {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background: var(--header-bg);
+    transform: translateY(-120%);
+    transition: transform .4s ease;
+    text-align: center;
+    z-index: 1000;
+    display: none;
+  }
+
+  nav.active {
+    transform: translateY(0);
+    display: block;
+  }
+
+  .carousel {
+    height: 50vh;
+  }
+
+  main section {
+    padding: 50px 20px;
+  }
+
+  .servicio {
+    width: 100%;
+  }
+
+  .footer-grid {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .modo-toggle {
+    margin-right: 2.5rem;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  header {
+    padding: 10px 40px;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+
+  .servicio {
+    width: 45%;
+  }
+
+  form {
+    width: 90%;
+  }
+}
+
+@media (min-width: 1025px) {
+  .servicios-container {
+    max-width: 1200px;
+    margin: auto;
+  }
+}
+
+/* Transiciones suaves globales */
+header,
+section,
+footer {
+  transition: background .35s ease, color .35s ease;
 }
