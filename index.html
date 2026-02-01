@@ -10,18 +10,21 @@
 
 <body>
 
+  <a class="skip-link sr-only" href="#contenido">Saltar al contenido</a>
+
 
   <header>
     <div class="logo">
-      <img src="img/logo_tpp.jpeg.jpeg" alt="logo_tpp">
+      <img src="img/logo_tpp.jpeg.jpeg" alt="Logotipo Transportes Pérez Pérez">
       <div class="texto-logo">
         <h1>TPP</h1>
         <p>Transportes Pérez Pérez</p>
       </div>
     </div>
-    <button class="menu-toggle" id="menuToggle">☰</button>
+    <button class="menu-toggle" id="menuToggle" type="button" aria-controls="menuNav" aria-expanded="false"
+      aria-label="Abrir menú de navegación">☰</button>
 
-    <nav id="menuNav">
+    <nav id="menuNav" aria-label="Menú principal">
       <ul>
         <li><a href="#inicio">Inicio</a></li>
         <li><a href="#servicios">Servicios</a></li>
@@ -31,22 +34,25 @@
       </ul>
     </nav>
 
-    <button id="modoToggle" class="modo-toggle">🌙</button>
+    <button id="modoToggle" class="modo-toggle" type="button" aria-label="Cambiar modo claro / oscuro">🌙</button>
 
   </header>
 
-  <section id="hero" class="carousel">
+  <section id="hero" class="carousel" aria-label="Carrusel de imágenes">
     <div class="slide active">
-      <img src="img/camion2.jpg.webp" alt="Camión 1">
+      <img src="img/camion2.jpg.webp" alt="Camión transportista en carretera">
       <div class="caption">Transporte de calidad a todo México</div>
     </div>
     <div class="slide">
-      <img src="img/camion1.jfif" alt="Camión 2">
+      <img src="img/camion1.jfif" alt="Remolque especializado de TPP">
       <div class="caption">Comprometidos con la puntualidad</div>
     </div>
     <div class="slide">
-      <img src="img/camion3.jpg.webp" alt="Camión 3">
+      <img src="img/camion3.jpg.webp" alt="Carga segura en el remolque">
       <div class="caption">Seguridad y confianza en cada envío</div>
+    </div>
+    <div class="carousel-controls">
+      <button id="carouselToggle" type="button" aria-pressed="false" aria-label="Pausar carrusel">Pausa</button>
     </div>
   </section>
 
@@ -125,11 +131,20 @@
     <section id="cotizacion">
       <h2>Solicita tu Cotización</h2>
       <form id="formCotizacion">
-        <input type="text" placeholder="Nombre" required>
-        <input type="email" placeholder="Correo" required>
-        <input type="text" placeholder="Origen" required>
-        <input type="text" placeholder="Destino" required>
-        <textarea placeholder="Detalles del envío" required></textarea>
+        <label class="sr-only" for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" type="text" placeholder="Nombre" required>
+
+        <label class="sr-only" for="correo">Correo</label>
+        <input id="correo" name="correo" type="email" placeholder="Correo" required>
+
+        <label class="sr-only" for="origen">Origen</label>
+        <input id="origen" name="origen" type="text" placeholder="Origen" required>
+
+        <label class="sr-only" for="destino">Destino</label>
+        <input id="destino" name="destino" type="text" placeholder="Destino" required>
+
+        <label class="sr-only" for="detalles">Detalles del envío</label>
+        <textarea id="detalles" name="detalles" placeholder="Detalles del envío" required></textarea>
         <button type="submit">Enviar Solicitud</button>
       </form>
     </section>
@@ -192,8 +207,7 @@
       <div class="col">
         <h4>Síguenos</h4>
         <p><a href="#">Facebook</a> · <a href="#">LinkedIn</a> · <a href="#">Instagram</a></p>
-        <p style="margin-top:10px; font-size:13px; color:rgba(255,255,255,0.8);">Horario de atención: Lun-Vie 9:00 -
-          18:00</p>
+        <p class="footer-note">Horario de atención: Lun-Vie 9:00 - 18:00</p>
       </div>
     </div>
 

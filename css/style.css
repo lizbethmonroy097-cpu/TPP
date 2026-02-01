@@ -308,6 +308,12 @@ footer {
   color: rgba(255, 255, 255, 0.75);
 }
 
+.footer-note {
+  margin-top: 10px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* ====== MISION/VISION */
 .mision-vision-valores {
   margin-top: 30px;
@@ -470,4 +476,68 @@ header,
 section,
 footer {
   transition: background .35s ease, color .35s ease;
+}
+
+/* ====== ACCESIBILIDAD ====== */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* Enlace de salto al contenido */
+.skip-link {
+  position: absolute;
+  left: 0;
+  top: -40px;
+  background: var(--accent-color);
+  color: white;
+  padding: 8px 12px;
+  z-index: 2000;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-link:focus {
+  top: 10px;
+}
+
+/* Enfoque visible y claro para navegación por teclado */
+:focus {
+  outline: 3px solid #ffbd59;
+  outline-offset: 3px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Controls del carousel */
+.carousel-controls {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1200;
+}
+
+.carousel-controls button {
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Respetar la preferencia de movimiento reducida */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
 }
